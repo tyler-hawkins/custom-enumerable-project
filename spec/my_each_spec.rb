@@ -12,7 +12,7 @@ RSpec.describe Array do
           # This should return the original array
           # no matter the contents of the block
         end
-
+		puts my_each_results
         expect(my_each_results).to eq(array)
       end
 
@@ -27,7 +27,7 @@ RSpec.describe Array do
         array.each do |element|
           each_results << element * 2
         end
-
+		puts my_each_results
         expect(my_each_results).to eq(each_results)
       end
     end
