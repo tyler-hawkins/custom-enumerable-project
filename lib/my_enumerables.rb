@@ -1,6 +1,14 @@
 module Enumerable
 	# Your code goes here
-	
+	def my_each_with_index
+		return to_enum unless block_given?
+		i = 0
+		while i < length
+			yield(self[i], i)
+			i += 1
+		end
+		self
+	end
 end
 
 # You will first have to define my_each
