@@ -9,6 +9,13 @@ module Enumerable
 		end
 		self
 	end
+
+	def my_select
+		return to_enum unless block_given?
+		result = []
+		my_each { |e| result.push(e) if yield e }
+		result
+	end
 end
 
 # You will first have to define my_each
