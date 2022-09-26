@@ -39,7 +39,7 @@ module Enumerable
 		n
 	end
 
-	def my_map(block = nil)
+	def my_map(&block)
 		result = []
 		exp = -> {}
 		if block_given?
@@ -50,6 +50,10 @@ module Enumerable
 		my_each { |e| result << exp.call(e) }
 		result
 	end
+
+	def my_inject(&block)
+		
+	end
 end
 
 # You will first have to define my_each
@@ -59,7 +63,7 @@ end
 
 class Array 
 	# Define my_each here
-	def my_each
+	def my_each(&block)
 		# If no block is given, return the array as an enum to mock Array#each
 		return to_enum unless block_given?
 		i = 0
@@ -68,7 +72,7 @@ class Array
 		while i < length
 			# yield executes whatever the calling code gives in its do/end or { } block
 			# self[i] here takes the place of whatever argument belongs to the passed in block
-			yield self[i]
+			block.call(self[i])
 			# If array.some_other_func were invoked with no block argument, 
 			# we would just write "yield" to run the code in the block
 			
