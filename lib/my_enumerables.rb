@@ -31,6 +31,13 @@ module Enumerable
 		my_each { |e| return false if yield e }
 		true
 	end
+	
+	def my_count 
+		return length unless block_given?
+		n = 0
+		my_each { |e| n += 1 if yield e }
+		n
+	end
 end
 
 # You will first have to define my_each
@@ -39,7 +46,7 @@ end
 # to this method
 
 class Array 
-	# Define my_each here	
+	# Define my_each here
 	def my_each
 		# If no block is given, return the array as an enum to mock Array#each
 		return to_enum unless block_given?
