@@ -16,6 +16,11 @@ module Enumerable
 		my_each { |e| result.push(e) if yield e }
 		result
 	end
+
+	def my_all?
+		my_each { |e| return false if not yield e}
+		true
+	end
 end
 
 # You will first have to define my_each
