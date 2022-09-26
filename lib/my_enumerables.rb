@@ -38,6 +38,18 @@ module Enumerable
 		my_each { |e| n += 1 if yield e }
 		n
 	end
+
+	def my_map(block = nil)
+		result = []
+		exp = -> {}
+		if block_given?
+			exp = -> (elem) { yield(elem) } 
+		else
+			exp = -> (elem) { block.call(elem) }
+		end
+		my_each { |e| result << exp.call(e) }
+		result
+	end
 end
 
 # You will first have to define my_each
