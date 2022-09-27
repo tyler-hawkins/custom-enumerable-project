@@ -51,8 +51,10 @@ module Enumerable
 		result
 	end
 
-	def my_inject(&block)
-		
+	def my_inject(acc=self.first, &block)
+		return to_enum unless block_given?
+		my_each_with_index { |e, i| acc = block.call(acc, self[i]) }
+		acc
 	end
 end
 
@@ -62,6 +64,7 @@ end
 # to this method
 
 class Array 
+	
 	# Define my_each here
 	def my_each(&block)
 		# If no block is given, return the array as an enum to mock Array#each
